@@ -21,7 +21,7 @@ func NewTaskHandler(taskService s.TaskService) *taskHandler {
 	return &taskHandler{taskService: taskService}
 }
 
-func (c *taskHandler) CreateTask(w http.ResponseWriter, r *http.Request) {
+func (h *taskHandler) CreateTask(w http.ResponseWriter, r *http.Request) {
 	functionDesc := "CreateActualLaunchDate Handler"
 	fmt.Println("Enter" + functionDesc)
 	ctx := r.Context()
@@ -35,7 +35,7 @@ func (c *taskHandler) CreateTask(w http.ResponseWriter, r *http.Request) {
 		fmt.Println("Exit" + functionDesc)
 		return
 	}
-	result := c.taskService.CreateTask(ctx, input)
+	result := h.taskService.CreateTask(ctx, input)
 	if result.IsError {
 		fmt.Println(result.Error)
 		utils.JsonWriterString(w, http.StatusInternalServerError, constants.InternalServerError)

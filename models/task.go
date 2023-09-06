@@ -1,7 +1,7 @@
 package models
 
 type TaskDetails struct {
-	TaskDetailID uint64 `gorm:"primaryKey;column:task_detail_id;type:bigint(20) unsigned;not null" json:"task_detail_id"`
+	TaskID uint64 `gorm:"primaryKey;column:task_id;type:bigint(20) unsigned;not null" json:"task_id"`
 	UserID       uint64 `gorm:"index:user_id;column:user_id;type:bigint(20) unsigned;not null" json:"user_id"`
 	TaskName     string `gorm:"column:task_name;type:text" json:"task_name"`
 	StartDate    uint64 `gorm:"column:start_date;type:bigint(20) unsigned" json:"start_date"`

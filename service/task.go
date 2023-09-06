@@ -15,10 +15,10 @@ type TaskService interface {
 }
 
 type taskService struct {
-	taskDb d.TaskDb
+	taskDb d.TaskRepo
 }
 
-func NewTaskService(taskDb d.TaskDb) *taskService {
+func NewTaskService(taskDb d.TaskRepo) *taskService {
 	return &taskService{taskDb: taskDb}
 }
 
@@ -27,14 +27,14 @@ func (s taskService) CreateTask(ctx context.Context, input resources.TaskDetails
 	fmt.Println("Enter" + functionDesc)
 
 	taskDetails := models.TaskDetails{
-		TaskDetailID: input.TaskDetailID,
-		UserID:       input.UserID,
-		TaskName:     input.TaskName,
-		Description:  input.Description,
-		StartDate:    input.StartDate,
-		DueDate:      input.DueDate,
-		Status:       input.Status,
-		Priority:     input.Priority,
+		TaskID:      input.TaskID,
+		UserID:      input.UserID,
+		TaskName:    input.TaskName,
+		Description: input.Description,
+		StartDate:   input.StartDate,
+		DueDate:     input.DueDate,
+		Status:      input.Status,
+		Priority:    input.Priority,
 	}
 
 	taskDetails.AuditModel.SetCreateDefault(input.CreatedBy, 1)
@@ -53,7 +53,7 @@ func (s taskService) CreateTask(ctx context.Context, input resources.TaskDetails
 	return resources.ServiceResult{
 		Code:              http.StatusOK,
 		IsError:           false,
-		ServiceResultData: resources.ServiceResultData{Data: taskDetails.TaskDetailID},
+		ServiceResultData: resources.ServiceResultData{Data: taskDetails.TaskID},
 	}
 
 }

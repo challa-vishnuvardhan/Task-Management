@@ -7,7 +7,12 @@ import (
 )
 
 func main() {
+	//Intializing the Envinormental keys
 	config.IntializeEnv()
+
+    // connecting to db 
 	db.DbConnect()
+
+	//start
 	routes.StartRoute()
 }

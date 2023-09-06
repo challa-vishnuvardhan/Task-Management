@@ -8,22 +8,22 @@ import (
 	"gorm.io/gorm"
 )
 
-type TaskDb interface {
+type TaskRepo interface {
 	CreateTask(ctx context.Context, input *models.TaskDetails) error
 }
 
-type taskDb struct {
+type taskRepo struct {
 	db *gorm.DB
 }
 
-func NewTaskDb() *taskDb {
-	return &taskDb{
+func NewTaskRepo() *taskRepo {
+	return &taskRepo{
 		db: DbClient,
 	}
 }
 
-func (d *taskDb) CreateTask(ctx context.Context, input *models.TaskDetails) error {
-	functionDesc := "CreateActualLaunchDate DB"
+func (d *taskRepo) CreateTask(ctx context.Context, input *models.TaskDetails) error {
+	functionDesc := "CreateTask DB"
 	fmt.Println("Enter" + functionDesc)
 
 	db := d.db

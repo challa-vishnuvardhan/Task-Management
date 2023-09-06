@@ -14,14 +14,14 @@ var (
 )
 
 var (
-	TaskDb d.TaskDb
+	TaskRepo d.TaskRepo
 )
 
 func BuildDb() {
-	TaskDb = d.NewTaskDb()
+	TaskRepo = d.NewTaskRepo()
 }
 func BuildService() {
-	TaskService = s.NewTaskService(TaskDb)
+	TaskService = s.NewTaskService(TaskRepo)
 }
 func BuildHandler() {
 	BuildDb()
